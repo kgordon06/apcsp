@@ -4,12 +4,6 @@ import turtle
 import random
 import keyboard
 
-sunflower = "sunflower.gif"
-daisy = "daisy.gif"
-iris = "iris.gif"
-daffodil = "daffodil.gif"
-remove_gif = []
-
 # initialize screen
 wn = turtle.Screen()
 wn.title("Flowory")
@@ -19,10 +13,10 @@ wn.setup(width = 1920, height = 1080)
 # initialize turtle
 turtle.bgcolor("lightpink1")
 turtle.hideturtle()
-turtle.register_shape(sunflower)
-turtle.register_shape(daisy)
-turtle.register_shape(iris)
-turtle.register_shape(daffodil)
+turtle.register_shape("sunflower.gif")
+turtle.register_shape("daisy.gif")
+turtle.register_shape("iris.gif")
+turtle.register_shape("daffodil.gif")
 turtle.register_shape("lavender.gif")
 turtle.register_shape("rose.gif")
 turtle.register_shape("tulip.gif")
@@ -72,7 +66,7 @@ while True:
         difficulty = input("What difficulty would you like to play? Easy/Medium/Hard\n").lower()
         #   setting the list of flowers that will appear in random order depending on difficulty
         if (difficulty == "easy"):
-            flower_images = [sunflower, daisy, iris, daffodil]
+            flower_images = ["sunflower.gif", "daisy.gif", "iris.gif", "daffodil.gif"]
             break
         elif (difficulty == "medium"):
             flower_images = ["sunflower.gif", "daisy.gif", "iris.gif", "daffodil.gif", "lavender.gif", "rose.gif","tulip.gif"]
