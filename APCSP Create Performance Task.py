@@ -4,6 +4,11 @@ import turtle
 import random
 import keyboard
 
+sunflower = "sunflower.gif"
+daisy = "daisy.gif"
+iris = "iris.gif"
+daffodil = "daffodil.gif"
+remove_gif = []
 
 # initialize screen
 wn = turtle.Screen()
@@ -14,10 +19,10 @@ wn.setup(width = 1920, height = 1080)
 # initialize turtle
 turtle.bgcolor("lightpink1")
 turtle.hideturtle()
-turtle.register_shape("sunflower.gif")
-turtle.register_shape("daisy.gif")
-turtle.register_shape("iris.gif")
-turtle.register_shape("daffodil.gif")
+turtle.register_shape(sunflower)
+turtle.register_shape(daisy)
+turtle.register_shape(iris)
+turtle.register_shape(daffodil)
 turtle.register_shape("lavender.gif")
 turtle.register_shape("rose.gif")
 turtle.register_shape("tulip.gif")
@@ -37,14 +42,21 @@ def start():
 def input_order():
     #   empty list where the player's inputs will be stored
     player_order = []
+    j=0
+    for i in flower_images:
+        flower_images[j]=i.rstrip(".gif")
+        j+=1
+    print(flower_images)
     #   prompting player to input the order of shuffled images
     for i in range(len(flower_images)):
         player_input = wn.textinput("Enter Image Order", f"Enter name of flower {i + 1}:")
         player_order.append(player_input)
     # checking if player input matches order of shuffled images
-    if (player_order == original_order):
+    if (player_order == flower_images):
         print("Congratulations! You got it right!")
     else:
+        print(player_order)
+        print(flower_images)
         print("Oops! That's not the correct order.")
 
 #   main game engine
@@ -60,7 +72,7 @@ while True:
         difficulty = input("What difficulty would you like to play? Easy/Medium/Hard\n").lower()
         #   setting the list of flowers that will appear in random order depending on difficulty
         if (difficulty == "easy"):
-            flower_images = ["sunflower.gif", "daisy.gif", "iris.gif", "daffodil.gif"]
+            flower_images = [sunflower, daisy, iris, daffodil]
             break
         elif (difficulty == "medium"):
             flower_images = ["sunflower.gif", "daisy.gif", "iris.gif", "daffodil.gif", "lavender.gif", "rose.gif","tulip.gif"]
@@ -73,9 +85,7 @@ while True:
     #   prompting player to start game
     start()
     #   shuffling images
-    original = random.shuffle(flower_images)
-    original_order = []
-    original_order.append(original)
+    random.shuffle(flower_images)
     #   display images
     turtle.goto(0,0)
     for image in flower_images:
